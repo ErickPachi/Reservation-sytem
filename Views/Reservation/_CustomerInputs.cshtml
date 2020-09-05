@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BeanSceneDipAssT2.Areas.Identity.Data
+
+@inject SignInManager<AppUser> SignInManager
+
+@model BeanSceneDipAssT2.Models.ReservationCreateModel
+
+@{
+    //customer
+    string FN = ""; string LN = ""; string Email = ""; string Phone = "";
+    @if (SignInManager.IsSignedIn(User))
+    {
+        FN = Model.FirstName;
+        LN = Model.LastName;
+        Email = Model.Email;
+        Phone = Model.PhoneNumber;
+    }
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <span asp-validation-for="FirstName" class="col- text-danger dn"></span>
+    <div class="row">
+        <label class="col-md-4" asp-for="FirstName">First Name:</label>
+        <input asp-for="FirstName" value="@FN" class="form-control col-md-8" readonly/>
+    </div>
+    <br />
+    <span asp-validation-for="LastName" class="col- text-danger dn"></span>
+    <div class="row">
+        <label class="col-md-4" asp-for="LastName">Last Name:</label>
+        <input asp-for="LastName" value="@LN" class="form-control col-md-8" readonly/>
+    </div>
+    <br />
+    <span asp-validation-for="Email" class="col- text-danger dn"></span>
+    <div class="row">
+        <label class="col-md-4" asp-for="Email">Email:</label>
+        <input asp-for="Email" value="@Email" class="form-control col-md-8" readonly/>
+    </div>
+    <br />
+    <span asp-validation-for="PhoneNumber" class="col- text-danger dn"></span>
+    <div class="row">
+        <label class="col-md-4" asp-for="PhoneNumber">Phone Number:</label>
+        <input asp-for="PhoneNumber" value="@Phone" class="form-control col-md-8" readonly/>
+    </div>
+    <br />
+}
+else
+{
+    <span asp-validation-for="FirstName" class="col- text-danger dn"></span>
+    <div class="row">
+        <label class="col-md-4" asp-for="FirstName">First Name:</label>
+        <input asp-for="FirstName" value="@FN" class="form-control col-md-8" />
+    </div>
+    <br />
+    <span asp-validation-for="LastName" class="col- text-danger dn"></span>
+    <div class="row">
+        <label class="col-md-4" asp-for="LastName">Last Name:</label>
+        <input asp-for="LastName" value="@LN" class="form-control col-md-8" />
+    </div>
+    <br />
+    <span asp-validation-for="Email" class="col- text-danger dn"></span>
+    <div class="row">
+        <label class="col-md-4" asp-for="Email">Email:</label>
+        <input asp-for="Email" value="@Email" class="form-control col-md-8" />
+    </div>
+    <br />
+    <span asp-validation-for="PhoneNumber" class="col- text-danger dn"></span>
+    <div class="row">
+        <label class="col-md-4" asp-for="PhoneNumber">Phone Number:</label>
+        <input asp-for="PhoneNumber" value="@Phone" class="form-control col-md-8" />
+    </div>
+    <br />
+}

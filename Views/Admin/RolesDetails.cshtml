@@ -1,0 +1,71 @@
+﻿@model IEnumerable<BeanSceneDipAssT2.Models.AdminViewModels.RolesDetailsViewModel>
+
+@{
+    ViewData["Title"] = "Roles Details";
+}
+
+    <div class="TopRight">
+        <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Go Back</a>
+    </div>
+    <div class="TopLeft">
+        <a class="btn" asp-controller="Admin" asp-action="RolesIndex">Manage Roles</a>
+        <a class="btn" asp-action="RolesAssign" asp-controller="Admin">Assign Roles</a>
+    </div>
+<h1 style="margin-top:40px;">Staff List</h1>
+
+<table class="table col-" id="ReservationTable">
+    <thead style="border: 1px black solid; margin:2px; border-radius:15px; padding:5px; background-color: #961614; color:#fff">
+        <tr>
+            <th>
+                Roles
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                User Id
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+        <tr style="border: 1px black solid; margin:2px; border-radius:15px; padding:5px; background-color: #fff;">
+            <td>
+                @Html.DisplayFor(modelItem => item.RollName)
+            </td>
+            <td>
+                <div class="ditsName">
+                    @Html.DisplayFor(modelItem => item.FisrtName)
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@*
+    
+    
+            <th>
+                
+            </th>
+            <td>
+                <a class="btn btn-d" asp-route-id="@item.UserID" asp-route-name="@item.RollName" asp-action="RemoveStaff" asp-controller="Admin">Unassign</a>
+            </td>
+*@

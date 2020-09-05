@@ -1,0 +1,42 @@
+﻿@model BeanSceneDipAssT2.Models.ReportViewModel
+
+@{
+    ViewData["Title"] = "Report";
+}
+
+<h2>Report</h2>
+<div class="TopRight">
+    <a class="btn col-" style="margin: 5px;" href="javascript:void(0);" onclick="history.go(-1);">Go Back</a>
+</div>
+<h3>Our Restaurant got, </h3>
+<p1>Total of Clients: </p1> <span>@Model.Clients</span>
+<br />
+<p1>Total of Reservation: </p1> <span>@Model.Reservations</span>
+<br />
+<br />
+<h5>Total of Reservation made: </h5>
+<p1>From Web application: </p1> <span>@Model.Website</span>
+<br />
+<p1>from Mobile: </p1> <span>@Model.Mobile</span>
+<br />
+<p1>In Person: </p1> <span>@Model.InPErson</span>
+<br />
+<br />
+<h5>Total of Reservation during: </h5>
+<p1>Breakfast: </p1> <span>@Model.Breakfast</span>
+<br />
+<p1>Lunch: </p1> <span>@Model.Lunch</span>
+<br />
+<p1>Dinner: </p1> <span>@Model.Dinner</span>
+<br />
+<br />
+<h5>Total of Reservation by area: </h5>
+<p1>Main Room: </p1> <span>@Model.MainRoom</span>
+<br />
+<p1>Balcony: </p1> <span>@Model.Balcony</span>
+<br />
+<p1>Out Side: </p1> <span>@Model.OutSide</span>
+<br />
+<br />
+
+

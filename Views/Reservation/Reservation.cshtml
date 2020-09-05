@@ -1,0 +1,93 @@
+﻿@model BeanSceneDipAssT2.Models.ReservationCreateModel
+
+
+@using Microsoft.AspNetCore.Identity
+@using BeanSceneDipAssT2.Areas.Identity.Data
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+@{
+    ViewData["Title"] = "Reservation";
+
+    //default Sittings
+    string BreakSart = ""; string BreakEnd = "";
+    string LunchStart = ""; string LunchEnd = "";
+    string DinnerStart = ""; string DinnerEnd = "";
+    try
+    {
+        BreakSart = Model.AllSittings[0].Sitting_StartTime.ToString("HH");
+        BreakEnd = Model.AllSittings[0].Sitting_EndTime.ToString("HH");
+        LunchStart = Model.AllSittings[1].Sitting_StartTime.ToString("HH");
+        LunchEnd = Model.AllSittings[1].Sitting_EndTime.ToString("HH");
+        DinnerStart = Model.AllSittings[2].Sitting_StartTime.ToString("HH");
+        DinnerEnd = Model.AllSittings[2].Sitting_EndTime.ToString("HH");
+    }
+    catch { }
+    //getDate
+    string today = DateTime.Now.ToString("yyyy-MM-dd");
+    //getHours
+    string hour = DateTime.Now.ToString("HH:mm");
+}
+
+<h1>Resevation</h1>
+<br />
+<form id="Log_form" method="post" class="centralize" onload="DisableSitting()">
+    <p class="errorMessage"></p>
+        <!-- Calendar -->
+        <span asp-validation-for="Date" class="col- text-danger dn"></span>
+        <div class="row form-group">
+            <label class="col-md-4" asp-for="Date">Pick a day: </label>
+            <input type="date" id="datetimepicker" onchange="DisableSitting()" asp-for="Date" min="@today" value="@today" class="form-control col-md-8" />
+        </div>
+        <!--Sittings-->
+        <span asp-validation-for="SittingID" class="col- text-danger dn"></span>
+        <ul class="Sittings row form-group">
+            <li class="col-12 col-md-4">
+                <input type="radio" id="Sitting1" onclick="breakfastAreas(@BreakSart, @BreakEnd)" asp-for="SittingID" value="1" />
+                <label for="Sitting1">BreakFast</label>
+            </li>
+            <li class="col-12 col-md-4">
+                <input type="radio" id="Sitting2" onclick="lunchAreas(@LunchStart, @LunchEnd)" asp-for="SittingID" value="2" />
+                <label for="Sitting2">Lunch</label>
+            </li>
+            <li class="col-12 col-md-4">
+                <input type="radio" id="Sitting3" onclick="dinnerAreas(@DinnerStart, @DinnerEnd)" asp-for="SittingID" value="3" />
+                <label for="Sitting3">Dinner</label>
+            </li>
+        </ul>
+        <br />
+        <span asp-validation-for="StartTime" class="col- text-danger dn"></span>
+        <div class="row">
+            <label class="col-md-4" asp-for="StartTime">Pick a time: </label>
+            <select id="StartHours" asp-for="StartTime" name="StartTime" class="form-control col-md-8"></select>
+        </div>
+        <br />
+        <span asp-validation-for="NumberOfGuests" class="col- text-danger dn"></span>
+        <div class="row">
+            <label class="col-md-4" asp-for="NumberOfGuests">Number of guests: </label>
+            <input asp-for="NumberOfGuests" min="1" max="60" onkeydown="return false" class="form-control col-md-8" value="1" />
+        </div>
+        <br />
+        <div>
+            <h3>Personal Details</h3>
+            <partial name="_CustomerInputs" />
+
+        <div class="row">
+            <label class="col-md-4" asp-for="AdditionalRequirements">Special Needs:</label>
+            <textarea asp-for="AdditionalRequirements" class="form-control col-md-8"></textarea>
+        </div>
+
+        <br />
+        <div class="row formBottom">
+            <span class="col- col-sm-5"><button type="submit" class="btn col- col-md-8">Confirm</button></span>
+            <span class="col- col-sm-2">OR</span>
+            <span class="col- col-sm-5"><a class="btn btn-d col- col-md-8" href="javascript:void(0);" onclick="history.go(-1);">Cancel</a></span>
+        </div>
+    </div>
+    <br /><br />
+</form>
+
+@section aaa{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

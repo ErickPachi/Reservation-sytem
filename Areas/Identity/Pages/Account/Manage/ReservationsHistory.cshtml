@@ -1,0 +1,101 @@
+﻿@page
+@model ReservationsHistoryModel
+@{
+    ViewData["Title"] = "Reservation History";
+    ViewData["ActivePage"] = ManageNavPages.ReservationsHistory;
+    ViewData["C"] = ManageNavPages.ReservationsHistory;
+}
+
+<h4>@ViewData["Title"]</h4>
+<div>
+    <a class="btn" style="width:100%;" asp-area="" asp-controller="Reservation" asp-action="Reservation">Make a Reservation Now!</a>
+</div>
+<br />
+<div class="ReservationHistory">
+    <table class="table col-">
+        <thead style="border: 1px black solid; margin:2px; border-radius:15px; padding:5px; background-color: #961614; color:#fff">
+            <tr>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Client
+                </th>
+                <th>
+                    Sitting
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Start
+                </th>
+                <th>
+                    End
+                </th>
+                <th>
+                    Area
+                </th>
+                <th>
+                    Tables
+                </th>
+                <th>
+                    Guests
+                </th>
+                <th>
+                    Requirements
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.MyReservations.Count() > 0)
+            {
+            @foreach (var item in Model.MyReservations)
+            {
+                <tr style="border: 1px black solid; margin:2px; border-radius:15px; padding:5px; background-color: #fff;">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SittingName)
+                    </td>
+                    <td>
+                        <div class="ditsDate">
+                            @item.Date.ToString("dd-MM-yyyy")
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ditsHours">
+                            @item.StartTime.ToString("hh:mm tt")
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ditsHours">
+                            @item.EndTime.ToString("hh:mm tt")
+                        </div>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfTables)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfGuests)
+                    </td>
+                    <td>
+                        <div class="ditsH">
+                            @Html.DisplayFor(modelItem => item.AdditionalRequirements)
+                        </div>
+                    </td>
+                </tr>
+            }}
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<BeanSceneDipAssT2.Models.BookingDetailModel>
+
+@{
+    ViewData["Title"] = "Manage List";
+}
+
+
+<div class="TopLeft">
+    <a class="btn btn" asp-action="Index" asp-controller="Manager">Manager page</a>
+</div>
+<div class="TopRight">
+    <a class="btn" style="margin: 5px;" href="javascript:void(0);" onclick="history.go(-1);">Go Back</a><br />
+</div>
+<h1 style="margin-top:40px;">Reservation List</h1>
+<br />
+<div class="ReservationTable">
+    <table class="table col-">
+        <thead style="border: 1px black solid; margin:2px; border-radius:15px; padding:5px; background-color: #961614; color:#fff">
+            <tr>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Customer
+                </th>
+                <th>
+                    Sitting
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    StartTime
+                </th>
+                <th>
+                    EndTime
+                </th>
+                <th>
+                    Area
+                </th>
+                <th>
+                    No of Tables
+                </th>
+                <th>
+                    No of Guests
+                </th>
+                <th>
+                    Additional Requirements
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr style="border: 1px black solid; margin:2px; border-radius:15px; padding:5px; background-color: #fff;">
+                    <td style="font-weight: bold;">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        <div class="ditsName">
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </div>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SittingName)
+                    </td>
+                    <td>
+                        @item.Date.ToString("dd-MM-yyyy")
+                    </td>
+                    <td>
+                        @item.StartTime.ToString("hh:mm tt")
+                    </td>
+                    <td>
+                        @item.EndTime.ToString("hh:mm tt")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfTables)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfGuests)
+                    </td>
+                    <td>
+                        <div class="dits">
+                            @Html.DisplayFor(modelItem => item.AdditionalRequirements)
+                        </div>
+                    </td>
+                    <td>
+                        <a class="btn" asp-action="Detail" asp-controller="Booking" asp-route-id="@item.ReservationID">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

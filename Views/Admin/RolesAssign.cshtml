@@ -1,0 +1,34 @@
+﻿@model BeanSceneDipAssT2.Models.AdminViewModels.AssignRoleViewModel
+@{
+    ViewData["Title"] = "Assign Role";
+
+}
+
+    <form id="Log_form" method="post" class="centralize">
+        <h1>Assign</h1>
+        <h3>Role</h3>
+        <hr />
+        <span asp-validation-for="RollName" class="col- text-danger dn"></span>
+        <div class="row">
+            <label class="col-md-4" asp-for="RollName">Roll Name:</label>
+            <input asp-for="RollName" value="@Model.RollName" class="form-control col-md-8" />
+        </div><br />
+        <span asp-validation-for="UserID" class="col- text-danger dn"></span>
+        <div class="row">
+            <label class="col-md-4" asp-for="UserID">User ID:</label>
+            <input asp-for="UserID" value="@Model.UserID" class="form-control col-md-8" />
+        </div><br />
+        <hr />
+        <div class="row formBottom">
+            <span class="col- col-sm-5"><button type="submit" class="btn col- col-md-8">Assign User</button></span>
+            <span class="col- col-sm-2">OR</span>
+            <span class="col- col-sm-5"><button type="submit" class="col- btn btn-d" asp-action="UnAssignRole" asp-controller="Admin">Unassign User</button></span>
+        </div>
+    </form>
+
+<div class="TopRight">
+    <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Go Back</a><br />
+</div>
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

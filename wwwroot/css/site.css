@@ -1,0 +1,509 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+.right {
+    position: absolute;
+    right: 0px;
+    width: 300px;
+    border: 3px solid #73AD21;
+    padding: 10px;
+}
+a.navbar-brand {
+    position: absolute;
+    left: 29%;
+    white-space: normal;
+    text-align: center;
+    font-size: 35px;
+}
+/*buttons*/
+a {
+    color: #000000;
+}
+a:hover {
+    color: #000000;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #000000;
+    background-color: #cf2a27;
+    border: 1px solid #000000;
+}
+.my_NavBar {
+    color: #000000;
+    background-color: #cf2a27;
+    text-align:center;
+}
+.btn {
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #631313;
+    border-bottom: 6px solid #370909;
+    border-left: 1.2px solid #370909;
+    border-right: 1.2px solid #370909;
+    border-top: 1px solid #370909;
+    cursor: pointer;
+}
+
+    .btn:hover {
+        color: #fff;
+        background: #ad3f3d;
+    }
+
+    .btn:active {
+        margin-top: 4px;
+        padding-top: 6px;
+        height: 37px;
+        color: white;
+        background: #bc0d0d;
+        border: 1px solid #494949;
+    }
+
+.btn-d {
+    color: #fff;
+    background-color: #9a2623;
+}
+    .btn-d:hover {
+        color: #fff;
+        background: #ba2925;
+    }
+    .btn-d:active {
+        color: white;
+        background: #760300;
+        border: 1px solid #000;
+    }
+
+#manage {
+    transition: all 2s;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.ReservationTable {
+    overflow-x: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 100px;
+    position: absolute;
+    top: 200px;
+    left: 50px;
+    width: 94%;
+}
+.dits {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 200px;
+}
+
+.ditsName {
+    width: 80px;
+}
+.ReservationHistory {
+    overflow-x: auto;
+    font-size: 14px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+.ditsH {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100px;
+}
+
+.ditsDate {
+    width: 90px;
+}
+.ditsHours {
+    width: 66px;
+}
+.NewR {
+position: absolute;
+top: 15px;
+right:-53px;
+}
+.user_info {
+    position: absolute;
+    left: 0;
+    top: 80px;
+    font-size: 9px;
+}
+.dn {
+    margin-left: 33%;
+}
+p1{
+    font-weight:bold;
+}
+.selectedTables {
+    width: 15%;
+    color: #fff;
+    margin: 2.5%;
+    text-align: center;
+    border: solid black 1px;
+    font-weight: bold;
+    border-radius: 25px;
+    background-color: #7c1919;
+    box-shadow: 0px -1px 3px #f8f8f8, 0px 1px 3px #f8f8f8,-1px 0px 3px #f8f8f8, 1px 0px 3px #f8f8f8, -6px 0px 10px #f8f8f8, 6px 0px 10px #f8f8f8, 0px -6px 10px #f8f8f8, 0px 6px 10px #f8f8f8;
+}
+.TopLeft {
+    position: absolute;
+    top: 120px;
+    left: 5%;
+}
+
+.TopRight {
+    position: absolute;
+    right: 5%;
+    top: 120px;
+}
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+@media (max-width: 768px) {
+    a.navbar-brand {
+        font-size: 30px;
+    }
+}
+@media (max-width: 900px) {
+    #manage {
+        display: none;
+    }
+}
+@media (max-width: 1000px) {
+    #manage {
+        opacity: 0;
+    }
+}
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 2px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+input {
+    border: 1px solid black;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #dddddd;
+}
+.footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #cf2a27;
+    border: 1px solid #000000;
+}
+/*Reservation*/
+#Log_form {
+    padding-left: 25%;
+    padding-right: 25%;
+}
+h1, h4, h6 {
+    text-align: center;
+    margin: 20px;
+}
+.ID_Title {
+    font-weight: bold;
+    cursor: default;
+}
+.errorMessage {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+#ErrorMss {
+    width: 30%;
+    position: fixed;
+    padding: 20px;
+    top: 200px;
+    right: 0;
+    font-weight: bold;
+    font-size: 20px;
+    color: red;
+}
+.CompleteMessage {
+    color: black;
+    font-weight:bold;
+    font-weight: bold;
+    text-align: center;
+}
+#tableselection{
+    display: none;
+}
+li, ul {
+    list-style: none;
+}
+
+/*Radio buttons*/
+.Sittings {
+    list-style-type: none;
+    margin: 25px 0 0 0;
+    padding: 0;
+}
+
+.Sittings li {
+    text-align: center;
+    float: left;
+    width: 33%;
+    height: 50px;
+    position: relative;
+}
+
+    .Sittings label,
+    .Sittings input {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .Sittings input[type="radio"] {
+        opacity: 0.01;
+        z-index: 2;
+    }
+        .Sittings input[type="radio"]:checked + label,
+        .Checked + label {
+            background: #e35900;
+            font-weight: bold;
+            color: #fff;
+        }
+    .Sittings label {
+        color: #fff;
+        margin-left: 3%;
+        width: 95%;
+        border-radius: 20px;
+        background-color: #9a2623;
+        padding: 5px;
+        border-bottom: 6px solid #370909;
+        border-left: 1.2px solid #370909;
+        border-right: 1.2px solid #370909;
+        border-top: 1px solid #370909;
+        cursor: pointer;
+        z-index: 1;
+    }
+        .Sittings label:hover {
+            color: white;
+            background: #ba2925;
+        }
+        .Sittings label:active {
+            margin-top: 5px;
+            padding-top: 7px;
+            height: 39px;
+            color: white;
+            background: #760300;
+            border: 1px solid #000;
+        }
+    .Sittings input[type="radio"]:disabled + label,
+    .Checked + label {
+        background: #848484;
+        color: #000;
+        cursor: default;
+    }
+        /*btns like that*/
+.btn-cool {
+    list-style-type: none;
+    margin: 25px 0 0 0;
+    padding: 0;
+}
+/*btn names*/
+.RTables {
+    text-align: center;
+    float: left;
+    width: 20%;
+    height: 50px;
+    position: relative;
+}
+    .btn-cool label,
+    .btn-cool input {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+        .btn-cool input[type="radio"] {
+            opacity: 0.01;
+            z-index: 2;
+        }
+
+            .btn-cool input[type="radio"]:checked + label,
+            .Checked + label {
+                background: #e35900;
+                font-weight: bold;
+                color: #fff;
+            }
+
+    .btn-cool label {
+        color: #fff;
+        margin-left: 3%;
+        width: 95%;
+        border-radius: 20px;
+        background-color: #9a2623;
+        padding: 5px;
+        border-bottom: 6px solid #370909;
+        border-left: 1.2px solid #370909;
+        border-right: 1.2px solid #370909;
+        border-top: 1px solid #370909;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+        .btn-cool label:hover {
+            color: white;
+            background: #ba2925;
+        }
+
+        .btn-cool label:active {
+            margin-top: 5px;
+            padding-top: 7px;
+            height: 39px;
+            color: white;
+            background: #760300;
+            border: 1px solid #000;
+        }
+
+    .btn-cool input[type="radio"]:disabled + label,
+    .Checked + label {
+        background: #848484;
+        color: #000;
+        cursor: default;
+    }
+textarea {
+    padding: 5px;
+    resize: none;
+    border-radius: 10px;
+}
+.formBottom span {
+    text-align: center;
+}
+/*side Menu*/
+.sidenav {
+    display: none;
+    opacity: 0.9;
+    height: 100%;
+    width: 0;
+    color: #fff;
+    background-color: #9a2623;
+    border-right: 2px solid #000000;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.nav_link {
+    color: #ffffff;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    display: block;
+    transition: 0.3s;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+    .nav_link:hover {
+        color: #9a2623;
+        text-shadow: 0px -1px 3px #ffffff, 0px 1px 3px #ffffff,-1px 0px 3px #ffffff, 1px 0px 3px #ffffff, -6px 0px 10px #ffffff, 6px 0px 10px #ffffff, 0px -6px 10px #ffffff, 0px 6px 10px #ffffff;
+    }
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+
+.menuf {
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 20px;
+    box-shadow: 0px -1px 3px #f8f8f8, 0px 1px 3px #f8f8f8,-1px 0px 3px #f8f8f8, 1px 0px 3px #f8f8f8, -6px 0px 10px #f8f8f8, 6px 0px 10px #f8f8f8, 0px -6px 10px #f8f8f8, 0px 6px 10px #f8f8f8;
+}
+.carousel-indicators li {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #797979;
+}
+.carousel-indicators li:hover {
+    background-color: #fff;
+}
+.slidenavL {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    box-shadow: inset 20px 0px 20px #000;
+}
+.slidenavR {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    box-shadow: inset -20px 0px 20px #000;
+}
+.d-block{
+    height: 320px;
+}
+.carousel-inner {
+    border: 2px solid #000;
+    border-radius: 25px;
+}
+.slideT {
+    padding: 15px;
+    padding-top: 5px;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    left: 41%;
+}
+
+

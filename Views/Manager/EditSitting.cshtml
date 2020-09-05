@@ -1,0 +1,40 @@
+﻿@model BeanSceneDipAssT2.Models.EditSittingViewModel
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>Sitting's Detail</h1>
+<br />
+<form id="Log_form" method="post" class="centralize">
+    <div class="form-group">
+        <!-- Sitting ID no Changes -->
+        <div class="row">
+            <label asp-for="SittingID" class="col-md-4">Sitting ID:</label>
+            <input type="text" asp-for="SittingID" class="form-control col-md-8 ID_Title" value="@Model.SittingID" readonly />
+        </div>
+        <br />
+        <div class="row">
+            <label asp-for="SittingName" class="col-md-4">Sitting ID:</label>
+            <input type="text" asp-for="SittingName" class="form-control col-md-8 ID_Title" value="@Model.SittingName" readonly />
+        </div>
+        <br />
+        <!-- Start Time -->
+        <div class="row">
+            <label class="col-md-4" asp-for="Sitting_StartTime">Start time: </label>
+            <input type="time" asp-for="Sitting_StartTime" class="form-control col-md-8" value="@Model.Sitting_StartTime.ToString("HH:mm")" />
+        </div>
+        <br />
+        <!-- End Time -->
+        <div class="row">
+            <label class="col-md-4" asp-for="Sitting_EndTime">Ending time: </label>
+            <input type="time" asp-for="Sitting_EndTime" class="form-control col-md-8" value="@Model.Sitting_EndTime.ToString("HH:mm")" />
+        </div>
+        <br />
+        <div class="row formBottom">
+            <span class="col- col-sm-5"><button type="submit" class="btn col- col-md-8">Save Changes</button></span>
+            <span class="col- col-sm-2">OR</span>
+            <span class="col- col-sm-5"><a class="btn btn-d col- col-md-8" href="javascript:void(0);" onclick="history.go(-1);">Cancel</a></span>
+        </div>
+    </div>
+</form>

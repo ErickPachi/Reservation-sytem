@@ -1,0 +1,71 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BeanSceneDipAssT2.Areas.Identity.Data
+
+@inject SignInManager<AppUser> SignInManager
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <br />
+            <h2>Welcome To Our Website!</h2>
+            <dl>
+                <dt><a href="/Home/Menu">Food Menu</a></dt>
+                <dd>We have based on Mexican food!</dd>
+            </dl>
+        </div>
+        <div class="col-md-6" style="margin-bottom:20px;">
+            <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+
+                        <a asp-area="" asp-controller="Home" asp-action="Menu">
+                            <div class="slideT">Menu</div>
+                            <img class="d-block w-100" src="/images/food/foodiesfeed.com_colorful-mexican-feast.jpg" alt="First slide">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+
+                        <a asp-area="" asp-controller="Reservation" asp-action="Reservation">
+                            <div class="slideT">Booking</div>
+                            <img class="d-block w-100" src="/images/restaurant/henrique-felix-mmuMa7VXL1Y-unsplash.jpg" alt="Second slide">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a asp-area="" asp-controller="Reservation" asp-action="Reservation">
+                            <div class="slideT">Booking</div>
+                            <img class="d-block w-100" src="/images/restaurant/shawn-ang-nmpW_WwwVSc-unsplash.jpg" alt="Third slide">
+                        </a>
+                    </div>
+                </div>
+
+                @*free image food*@
+                @*https://www.foodiesfeed.com/*@
+                @*free image restaurant*@
+                @*https://unsplash.com/s/photos/restaurant*@
+                <a class="carousel-control-prev slidenavL" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next slidenavR" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <div col-md-3 col->
+            <a class="btn col-" asp-area="" asp-controller="Reservation" asp-action="Reservation">Make a reservation!</a><br /><br />
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <a class="btn btn-d col-"  asp-area="Identity" asp-page="/Account/Manage/Index">My Account</a>
+            }
+        </div>
+    </div>
+</div>

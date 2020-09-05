@@ -1,0 +1,191 @@
+﻿@model BeanSceneDipAssT2.Models.ReservationDeteailsViewModel
+
+@{
+    ViewData["Title"] = "Detail";
+    ViewBag.message = "";
+    string TableName = "";
+    int numbOfTables = 0;
+    string[] areasOptions = { "Main", "Balcony", "Outside" };
+}
+
+
+<h1>Resevation's Detail</h1>
+
+<br />
+<form id="Log_form" method="post" class="centralize">
+    <div class="form-group">
+
+
+        <!-- ----------------------------------------------------Tables -->
+        <!-- maybe displaylist of tables -->
+        <!-- Add Tables -->
+        <h5 style="text-align:center">Selected Tables:</h5>
+        <ul class="col- row TablesLIst">
+            @foreach (var T_R in Model.MyTR)
+            {
+                numbOfTables++;
+                if (T_R.TableID <= 10) { TableName = "M" + T_R.TableID; }
+                else if (T_R.TableID <= 20) { TableName = "B" + (T_R.TableID - 10); }
+                else if (T_R.TableID <= 30) { TableName = "O" + (T_R.TableID - 20); }
+                <li class="selectedTables">@TableName</li>
+            }
+        </ul>
+        <br />
+        <div class="row">
+            <label asp-for="NumberOfTables" class="col-md-4">Number Of Tables:</label>
+            <input type="text" id="NofTables" asp-for="NumberOfTables" class="form-control col-md-8 ID_Title" value="@numbOfTables" readonly />
+        </div>
+        <br />
+        <div class="row col-">
+            <label class="col-md-4" asp-for="Area">Area: </label>
+            <select id="EditArea" onchange="DisplayTables()" asp-for="Area" name="Area" class="form-control col-md-8">
+                <option>@Model.Area</option>
+                @if (numbOfTables == 0)
+                {
+                    @for (int i = 0; i < areasOptions.Length; i++)
+                    {
+                        <option>@areasOptions[i]</option>
+                    }
+                }
+            </select>
+        </div>
+        <br />
+        <ul class="col- row btn-cool" id="tableselection" style="margin-top:10px;">
+            @for (int i = 1; i <= 30; i++)
+            {
+                string TN = ""; string id = ""; string c = "";
+                if (i <= 10) { TN = "M" + i; c = "Main"; }
+                else if (i <= 20) { TN = "B" + (i - 10); c = "Balcony"; }
+                else if (i <= 30) { TN = "O" + (i - 20); c = "Outside"; }
+                id = "Table" + i;
+                <li class="RTables @c">
+                    <input type="radio" id="@id" asp-for="TableID" name="TableID" value="@i">
+                    <label for="@id">@TN</label>
+                </li>
+            }
+        </ul>
+        <br />
+        <div class="row formBottom" style="padding-top:15px;">
+            <span class="col- col-sm-5"><button type="submit" class="col- btn" asp-action="AddNewTable" asp-route-id="@Model.ReservationID">ADD Table</button></span>
+            <span class="col- col-sm-2">OR</span>
+            <span class="col- col-sm-5"><button type="submit" class="col- btn" asp-action="RemoveTable" asp-route-id="@Model.ReservationID">Remove Table</button></span>
+        </div>
+        <br />
+        <!-- ----------------------------------------------------------Sitting -->
+        <!-- Sitting ID no Changes -->
+        <h3>Sitting</h3>
+        <div class="row">
+            <label asp-for="SittingID" class="col-md-4">Sitting ID:</label>
+            <input type="text" asp-for="SittingID" class="form-control col-md-8 ID_Title" value="@Model.SittingID" readonly />
+        </div>
+        <br />
+        <!-- Sitting -->
+        <div class="row">
+            <label class="col-md-4" asp-for="SittingName">SittingName: </label>
+            <select id="SittingName" asp-for="SittingName" name="SittingName" class="form-control col-md-8">
+                <option>@Model.SittingName</option>
+                <option>Breakfast</option>
+                <option>Lunch</option>
+                <option>Dinner</option>
+            </select>
+        </div>
+        <br />
+        <!-- ----------------------------------------------------Reservation -->
+        <!--Reservation ID no Changes-->
+        <div class="row">
+            <label asp-for="ReservationID" class="col-md-4">Reservation ID: </label>
+            <input type="text" asp-for="ReservationID" class="form-control col-md-8 ID_Title" value="@Model.ReservationID" readonly />
+        </div>
+        <br />
+        <!-- Calendar -->
+        <div class="row">
+            <label class="col-md-4" asp-for="Date">Day: </label>
+            <input type="date" value="@Model.Date.ToString("yyyy-MM-dd")" asp-for="Date" class="form-control col-md-8" />
+        </div>
+        <br />
+        <!-- Start Time -->
+        <div class="row">
+            <label class="col-md-4" asp-for="StartTime">Start time: </label>
+            <input type="time" asp-for="StartTime" class="form-control col-md-8" value="@Model.StartTime.ToString("HH:mm")" />
+        </div>
+        <br />
+        <!-- End Time -->
+        <div class="row">
+            <label class="col-md-4" asp-for="EndTime">Ending time: </label>
+            <input type="time" asp-for="EndTime" class="form-control col-md-8" value="@Model.EndTime.ToString("HH:mm")" />
+        </div>
+        <br />
+        <!-- Number of guests -->
+        <div class="row">
+            <label class="col-md-4" asp-for="NumberOfGuests">Number of guests: </label>
+            <input asp-for="NumberOfGuests" min="1" max="60" onkeydown="return false" class="form-control col-md-8" value="@Model.NumberOfGuests" />
+        </div>
+        <br />
+        <!-- Status -->
+        <div class="row">
+            <label class="col-md-4" asp-for="Status">Status: </label>
+            <select id="Status" asp-for="Status" name="Status" class="form-control col-md-8">
+                <option>@Model.Status</option>
+                <option>Pending</option>
+                <option>confirmed</option>
+                <option>seated</option>
+                <option>completed</option>
+                <option>cancelled</option>
+            </select>
+        </div>
+        <br />
+        <!-- Source -->
+        <div class="row">
+            <label class="col-md-4" asp-for="Source">Source: </label>
+            <select id="Source" asp-for="Source" name="Source" class="form-control col-md-8">
+                <option>@Model.Source</option>
+                <option>WebSite</option>
+                <option>Mobile</option>
+                <option>Walk in</option>
+            </select>
+        </div>
+        <br />
+
+        <!-- ----------------------------------------------------Customer -->
+        <div>
+            <h3>Customer Personal Details</h3>
+            <br />
+            <!-- Customer ID no Changes -->
+            <div class="row">
+                <label asp-for="CustomerId" class="col-md-4">Customer ID:</label>
+                <input type="text" asp-for="CustomerId" class="form-control col-md-8 ID_Title" value="@Model.CustomerId" readonly />
+            </div>
+            <br />
+            <div class="row">
+                <label class="col-md-4" asp-for="FirstName">First Name:</label>
+                <input asp-for="FirstName" value="@Model.FirstName" class="form-control col-md-8" readonly/>
+            </div><br />
+
+            <div class="row">
+                <label class="col-md-4" asp-for="LastName">Last Name:</label>
+                <input asp-for="LastName" value="@Model.LastName" class="form-control col-md-8" readonly/>
+            </div><br />
+
+            <div class="row">
+                <label class="col-md-4" asp-for="Email">Email:</label>
+                <input asp-for="Email" value="@Model.Email" class="form-control col-md-8" readonly/>
+            </div><br />
+
+            <div class="row">
+                <label class="col-md-4" asp-for="PhoneNumber">Phone Number:</label>
+                <input asp-for="PhoneNumber" value="@Model.PhoneNumber" class="form-control col-md-8" readonly/>
+            </div><br />
+        </div>
+
+        <div class="row">
+            <label class="col-md-4" asp-for="AdditionalRequirements">Special Needs:</label>
+            <textarea asp-for="AdditionalRequirements" class="form-control col-md-8">@Model.AdditionalRequirements</textarea>
+        </div>
+        <br />
+        <div class="row formBottom">
+            <span class="col-"><button type="submit" class="btn col-">Save Changes</button></span>
+        </div>
+    </div>
+    <br /><br />
+</form>
+<div id="ErrorMss">@Model.Errormessage</div>

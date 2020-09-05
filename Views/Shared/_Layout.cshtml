@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BeanSceneDipAssT2</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/slideshow.css" rel="stylesheet" />
+</head>
+<body onload="initialize()">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm box-shadow mb-3 my_NavBar">
+
+            <div class="container">
+                <span style="font-size:30px;cursor:pointer" class="nav_link col-2" onclick="openNav()">&#9776;</span>
+                <a class="navbar-brand col-5" asp-area="" asp-controller="Home" asp-action="Index">Bean Scene</a>
+                <!--This is our Log In Button  /Identity/Account/Login -->
+                <partial name="_LoginPartial" />
+            </div>
+
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="nav-link nav_link closebtn" onclick="closeNav()">&times;</a>
+                <a class="nav-link nav_link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a class="nav-link nav_link" asp-area="" asp-controller="Home" asp-action="Menu">Menu</a>
+                <a class="nav-link nav_link" asp-area="" asp-controller="Reservation" asp-action="Reservation">Booking</a>
+                <partial name="_BtnNav" />
+            </div>
+        </nav>
+    </header>
+
+    <div class="container" onclick="closeNav()">
+        <main role="main" class="ph-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-dark">
+        <div class="container">
+            &copy; @DateTime.Now.Year - BeanSceneDipAssT2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> | <a asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/slideshow.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+    @RenderSection("aaa", required: false)
+</body>
+</html>

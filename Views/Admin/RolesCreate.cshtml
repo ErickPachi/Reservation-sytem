@@ -1,0 +1,29 @@
+﻿@model BeanSceneDipAssT2.Models.AdminViewModels.RolesCreateViewModel
+@{
+    ViewData["Title"] = "Create Role";
+}
+    <div class="TopRight">
+        <a class="btn" style="margin: 5px;" href="javascript:void(0);" onclick="history.go(-1);">Go Back</a>
+    </div>
+
+<h1>Create</h1>
+<h3>Role</h3>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="RolesCreate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RollName" class="control-label"></label>
+                <input asp-for="RollName" class="form-control" />
+                <span asp-validation-for="RollName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

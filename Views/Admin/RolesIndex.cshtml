@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BeanSceneDipAssT2.Models.AdminViewModels.RolesIndexViewModel>
+@{
+    ViewData["Title"] = "Manage Roles";
+}
+    <div class="TopRight">
+        <a class="btn col-" style="margin: 5px;" href="javascript:void(0);" onclick="history.go(-1);">Go Back</a>
+    </div>
+<h1>Manage Roles</h1>
+<p>
+    <a class="btn" asp-action="RolesCreate" asp-controller="Admin">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleName)
+                </td>
+                <td>
+                    <a class="btn" asp-action="RolesAssign" asp-controller="Admin" asp-route-RollName="@item.RoleName">Assign Role</a>
+                </td>
+                <td>
+                    <a class="btn btn-d" asp-action="DeleteRole" asp-controller="Admin" asp-route-id="@item.RoleId">Delete Role</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

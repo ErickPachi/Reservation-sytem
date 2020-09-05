@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BeanSceneDipAssT2.Areas.Identity.Data
+
+@inject SignInManager<AppUser> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a class="nav-link nav_link" asp-area="Identity" asp-page="/Account/Manage/Index">My Account</a>
+    if (User.IsInRole("Manager") || User.IsInRole("Staff"))
+    {
+    <a class="nav-link nav_link" asp-area="" asp-controller="Booking" asp-action="Index" style="color:gold">Staff page</a>
+    }
+    if (User.IsInRole("Manager"))
+    {
+        <a class="nav-link nav_link" asp-area="" asp-controller="Manager" asp-action="Index" style="color:gold">Manager page</a>
+        <a class="nav-link nav_link" asp-area="" asp-controller="Manager" asp-action="Report">Report</a>
+        <a class="nav-link nav_link" asp-area="" asp-controller="Admin" asp-action="RolesDetails">Staff List</a>
+        <a class="nav-link nav_link" asp-area="" asp-controller="Admin" asp-action="RolesAssign">Assign Roles</a>
+    }
+}
+else
+{
+    <a class="nav-link nav_link" asp-area="Identity" asp-page="/Account/Register">Register</a>
+}
