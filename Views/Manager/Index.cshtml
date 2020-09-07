@@ -1,37 +1,58 @@
-﻿@model BeanSceneDipAssT2.Models.EditSittingViewModel
+﻿@model BeanSceneDipAssT2.Models.ReportViewModel
 
 @{
     ViewData["Title"] = "Manage List";
 }
 
 <h1>Manager Page</h1>
-
 <div class="TopRight">
     <a class="btn col-" style="margin: 5px;" href="javascript:void(0);" onclick="history.go(-1);">Go Back</a>
 </div>
-<h3>Edit Sittings:</h3>
-@foreach (var s in Model.AllSittings)
-{
-    <a class="btn btn-d " style="margin: 5px; width: 30%;" asp-action="EditSitting" asp-controller="Manager" asp-route-id="@s.SittingID">Change @s.SittingName Duration</a>
-}
-<hr />
-<h3>General:</h3>
-<div>
-    <a class="btn col-" style="margin: 5px;" asp-action="MReservations" asp-controller="Manager">Manage Reservations</a><br />
-    <a class="btn" style="margin: 5px;" asp-action="RolesDetails" asp-controller="Admin">Manage Employees</a><br />
-    <a class="btn col-" style="margin: 5px;" asp-action="Report" asp-controller="Manager">Report</a><br />
+<div class="row">
+<div class="Report col-6">
+    <h2>Report:</h2>
+    <p1>Total of Clients: </p1> <span>@Model.Clients</span>
+    <br />
+    <p1>Total of Reservation: </p1> <span>@Model.Reservations</span>
+    <br />
+    <br />
+    <h5>Total of Reservation made: </h5>
+    <p1>From Web application: </p1> <span>@Model.Website</span>
+    <br />
+    <p1>from Mobile: </p1> <span>@Model.Mobile</span>
+    <br />
+    <p1>In Person: </p1> <span>@Model.InPErson</span>
+    <br />
+    <br />
+    <h5>Total of Reservation during: </h5>
+    <p1>Breakfast: </p1> <span>@Model.Breakfast</span>
+    <br />
+    <p1>Lunch: </p1> <span>@Model.Lunch</span>
+    <br />
+    <p1>Dinner: </p1> <span>@Model.Dinner</span>
+    <br />
+    <br />
+    <h5>Total of Reservation by area: </h5>
+    <p1>Main Room: </p1> <span>@Model.MainRoom</span>
+    <br />
+    <p1>Balcony: </p1> <span>@Model.Balcony</span>
+    <br />
+    <p1>Out Side: </p1> <span>@Model.OutSide</span>
 </div>
-<br />
-
-@*
-                                                search algorithm
-    <form method="post">
-        <div class="form-group">
-            <div class="row">
-                <label class="col-md-3">Search a reservation by ID:</label>
-                <input asp-for="@Model.SittingID" type="number" min="1" value="@Model.SittingID" class="form-control col-md-6" />
-                <a class="btn col-2" style="margin: 5px;" asp-action="SearchByID" asp-controller="Booking" asp-route-USerID="@Model.SittingID">Search</a>
-            </div>
-        </div>
-    </form>
-*@
+<div class="managerFunctions col-6">
+    <br />
+    <h3>General:</h3>
+    <div>
+        <a class="btn col-" style="margin: 5px; width: 100%;" asp-action="MReservations" asp-controller="Manager">Manage Reservations</a><br />
+        <a class="btn" style="margin: 5px; width: 100%;" asp-action="RolesDetails" asp-controller="Admin">Manage Employees</a><br />
+        <a class="btn" style="margin: 5px; width: 100%;" asp-area="" asp-controller="Admin" asp-action="RolesAssign">Assign Roles</a><br />
+    </div>
+    <br />
+    <hr />
+    <h3>Edit Sittings:</h3>
+    @foreach (var s in Model.AllSittings)
+    {
+        <a class="btn btn-d " style="margin: 5px; width: 100%;" asp-action="EditSitting" asp-controller="Manager" asp-route-id="@s.SittingID">@s.SittingName Duration</a>
+    }
+</div>
+</div>

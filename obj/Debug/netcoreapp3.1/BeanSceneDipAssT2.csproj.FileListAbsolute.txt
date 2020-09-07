@@ -826,7 +826,6 @@ C:\Users\erick\Programming\My Projects\Reservation\Shared_C#Project\BeanSceneDip
 C:\Users\erick\Programming\My Projects\Reservation\Shared_C#Project\BeanSceneDipAssT2\BeanSceneDipAssT2\obj\Debug\netcoreapp3.1\Razor\Views\Manager\EditSitting.cshtml.g.cs
 C:\Users\erick\Programming\My Projects\Reservation\Shared_C#Project\BeanSceneDipAssT2\BeanSceneDipAssT2\obj\Debug\netcoreapp3.1\Razor\Views\Manager\Index.cshtml.g.cs
 C:\Users\erick\Programming\My Projects\Reservation\Shared_C#Project\BeanSceneDipAssT2\BeanSceneDipAssT2\obj\Debug\netcoreapp3.1\Razor\Views\Manager\MReservations.cshtml.g.cs
-C:\Users\erick\Programming\My Projects\Reservation\Shared_C#Project\BeanSceneDipAssT2\BeanSceneDipAssT2\obj\Debug\netcoreapp3.1\Razor\Views\Manager\Report.cshtml.g.cs
 C:\Users\erick\Programming\My Projects\Reservation\Shared_C#Project\BeanSceneDipAssT2\BeanSceneDipAssT2\obj\Debug\netcoreapp3.1\Razor\Views\Reservation\Done.cshtml.g.cs
 C:\Users\erick\Programming\My Projects\Reservation\Shared_C#Project\BeanSceneDipAssT2\BeanSceneDipAssT2\obj\Debug\netcoreapp3.1\Razor\Views\Reservation\Reservation.cshtml.g.cs
 C:\Users\erick\Programming\My Projects\Reservation\Shared_C#Project\BeanSceneDipAssT2\BeanSceneDipAssT2\obj\Debug\netcoreapp3.1\Razor\Views\Reservation\_CustomerInputs.cshtml.g.cs

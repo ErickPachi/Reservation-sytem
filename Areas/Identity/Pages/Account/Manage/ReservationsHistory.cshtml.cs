@@ -74,34 +74,43 @@ namespace BeanSceneDipAssT2.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
             Customer c = _services.GetCustomerByEmail(user.Email);
-            MyReservations = _context.Reservations.Select(r => new ReservationModel()
+
+            try
             {
-                //Sitting
-                SittingID = r.SittingID,
-                SittingName = r.Sitting.SittingName,
+                MyReservations = _context.Reservations.Select(r => new ReservationModel()
+                {
+                    //Sitting
+                    SittingID = r.SittingID,
+                    SittingName = r.Sitting.SittingName,
 
-                //Reservation
-                ReservationID = r.ReservationID,
-                NumberOfGuests = r.NumberOfGuests,
-                AdditionalRequirements = r.AdditionalRequirements,
-                Date = r.Date,
-                StartTime = r.StartTime,
-                EndTime = r.EndTime,
-                Status = r.Status,
+                    //Reservation
+                    ReservationID = r.ReservationID,
+                    NumberOfGuests = r.NumberOfGuests,
+                    AdditionalRequirements = r.AdditionalRequirements,
+                    Date = r.Date,
+                    StartTime = r.StartTime,
+                    EndTime = r.EndTime,
+                    Status = r.Status,
 
-                //Customer
-                CustomerId = r.Customer.CustomerID,
-                FirstName = r.Customer.FirstName,
-                LastName = r.Customer.LastName,
+                    //Customer
+                    CustomerId = r.Customer.CustomerID,
+                    FirstName = r.Customer.FirstName,
+                    LastName = r.Customer.LastName,
 
-                //tables
-                NumberOfTables = r.Table_Reservation.Count,
-            }).Where(r => r.CustomerId == c.CustomerID).OrderByDescending(r => r.Date).ToList();
+                    //tables
+                    NumberOfTables = r.Table_Reservation.Count,
+                }).Where(r => r.CustomerId == c.CustomerID).OrderByDescending(r => r.Date).ToList();
 
-            foreach (var i in MyReservations)
-            {
-                i.Area = _services.GetAreaByID(i.ReservationID);
+                foreach (var i in MyReservations)
+                {
+                    i.Area = _services.GetAreaByID(i.ReservationID);
+                }
             }
+            catch
+            {
+                MyReservations = new List<ReservationModel>();
+            }
+
             return Page();
         }
     }

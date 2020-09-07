@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BeanSceneDipAssT2.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,5 +22,9 @@ namespace BeanSceneDipAssT2.Models
         public int MainRoom { get; set; }
         public int Balcony { get; set; }
         public int OutSide { get; set; }
+
+        //for sittings
+        public int SittingID { get; set; }
+        public List<Sitting> AllSittings { get; set; }
     }
 }

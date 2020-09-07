@@ -8,7 +8,6 @@
         <a class="btn" href="javascript:void(0);" onclick="history.go(-1);">Go Back</a>
     </div>
     <div class="TopLeft">
-        <a class="btn" asp-controller="Admin" asp-action="RolesIndex">Manage Roles</a>
         <a class="btn" asp-action="RolesAssign" asp-controller="Admin">Assign Roles</a>
     </div>
 <h1 style="margin-top:40px;">Staff List</h1>
@@ -31,31 +30,37 @@
             <th>
                 User Id
             </th>
+            <th>
+                Assign Roles
+            </th>
         </tr>
     </thead>
     <tbody>
 
         @foreach (var item in Model)
         {
-        <tr style="border: 1px black solid; margin:2px; border-radius:15px; padding:5px; background-color: #fff;">
-            <td>
-                @Html.DisplayFor(modelItem => item.RollName)
-            </td>
-            <td>
-                <div class="ditsName">
-                    @Html.DisplayFor(modelItem => item.FisrtName)
-                </div>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserID)
-            </td>
-        </tr>
+            <tr style="border: 1px black solid; margin:2px; border-radius:15px; padding:5px; background-color: #fff;">
+                <td>
+                    @Html.DisplayFor(modelItem => item.RollName)
+                </td>
+                <td>
+                    <div class="ditsName">
+                        @Html.DisplayFor(modelItem => item.FisrtName)
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserID)
+                </td>
+                <td>
+                    <a class="btn" asp-action="RolesAssign" asp-controller="Admin" asp-route-UserEmail="@item.Email">Assign Roles</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

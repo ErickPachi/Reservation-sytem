@@ -13,6 +13,6 @@ namespace BeanSceneDipAssT2.Models.AdminViewModels
         public string RollName { get; set; }
         [Display(Name = "User Name")]
         [Required(ErrorMessage = "This field is required")]
-        public string UserID { get; set; }
+        public string UserEmail { get; set; }
     }
 }

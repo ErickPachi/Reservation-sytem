@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using BeanSceneDipAssT2.DataAccess;
 
 namespace BeanSceneDipAssT2.Areas.Identity.Pages.Account
 {
@@ -21,20 +22,25 @@ namespace BeanSceneDipAssT2.Areas.Identity.Pages.Account
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly BeanSceneDBContext _context;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<AppUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        public RegisterModel(
+        public RegisterModel(BeanSceneDBContext beanSceneDBContext,
+            RoleManager<IdentityRole> roleManager,
             UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
-            _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _roleManager = roleManager;
+            _userManager = userManager;
+            _context = beanSceneDBContext;
         }
 
         [BindProperty]
@@ -93,6 +99,7 @@ namespace BeanSceneDipAssT2.Areas.Identity.Pages.Account
             {
                 var user = new AppUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName=Input.LastName, PhoneNumber=Input.PhoneNumber };
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
@@ -108,6 +115,37 @@ namespace BeanSceneDipAssT2.Areas.Identity.Pages.Account
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
+                    //----------------------------------------------Create a default manager account
+                    if (Input.Email == "admin@account.com")
+                    {
+                        const string roleName = "Manager";
+
+                        var AdminUser = _context.Users.SingleOrDefault(u => u.UserName == Input.Email);
+                        var role = _context.Roles.SingleOrDefault(r => r.Name == roleName);
+
+                        if (role == null)
+                        {
+                            _roleManager.CreateAsync(new IdentityRole(roleName)).Wait();
+                            role = _context.Roles.SingleOrDefault(r => r.Name == roleName);
+                        }
+
+                        var userRole = _context.UserRoles.SingleOrDefault(r => r.RoleId == role.Id);
+
+                        if (userRole == null)
+                        {
+                            _userManager.AddToRoleAsync(AdminUser, roleName).Wait();
+                        }
+
+                        //add Staff
+
+                        const string StaffRole = "Staff";
+                        var Srole = _context.Roles.SingleOrDefault(r => r.Name == StaffRole);
+                        if (Srole == null)
+                        {
+                            _roleManager.CreateAsync(new IdentityRole(StaffRole)).Wait();
+                        }
+                    }
+                    
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });

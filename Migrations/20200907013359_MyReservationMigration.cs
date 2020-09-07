@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BeanSceneDipAssT2.Migrations
 {
-    public partial class BeanScene : Migration
+    public partial class MyReservationMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -256,6 +256,53 @@ namespace BeanSceneDipAssT2.Migrations
                         principalTable: "Tables",
                         principalColumn: "TableID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Sittings",
+                columns: new[] { "SittingID", "SittingName", "Sitting_EndTime", "Sitting_StartTime" },
+                values: new object[,]
+                {
+                    { 1, "Breakfast", new DateTime(1, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 6, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, "Lunch", new DateTime(1, 1, 1, 18, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, "Dinner", new DateTime(1, 1, 1, 23, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 18, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Tables",
+                columns: new[] { "TableID", "Area", "TableName" },
+                values: new object[,]
+                {
+                    { 17, "Balcony", "B7" },
+                    { 18, "Balcony", "B8" },
+                    { 19, "Balcony", "B9" },
+                    { 20, "Balcony", "B10" },
+                    { 21, "Outside", "O1" },
+                    { 22, "Outside", "O2" },
+                    { 23, "Outside", "O3" },
+                    { 24, "Outside", "O4" },
+                    { 25, "Outside", "O5" },
+                    { 26, "Outside", "O6" },
+                    { 27, "Outside", "O7" },
+                    { 28, "Outside", "O8" },
+                    { 16, "Balcony", "B6" },
+                    { 15, "Balcony", "B5" },
+                    { 14, "Balcony", "B4" },
+                    { 13, "Balcony", "B3" },
+                    { 12, "Balcony", "B2" },
+                    { 11, "Balcony", "B1" },
+                    { 10, "Main", "M10" },
+                    { 9, "Main", "M9" },
+                    { 8, "Main", "M8" },
+                    { 7, "Main", "M7" },
+                    { 6, "Main", "M6" },
+                    { 5, "Main", "M5" },
+                    { 4, "Main", "M4" },
+                    { 3, "Main", "M3" },
+                    { 2, "Main", "M2" },
+                    { 1, "Main", "M1" },
+                    { 29, "Outside", "O9" },
+                    { 30, "Outside", "O10" }
                 });
 
             migrationBuilder.CreateIndex(

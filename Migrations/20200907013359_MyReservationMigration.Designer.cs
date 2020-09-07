@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeanSceneDipAssT2.Migrations
 {
     [DbContext(typeof(BeanSceneDBContext))]
-    [Migration("20200626104326_BeanScene")]
-    partial class BeanScene
+    [Migration("20200907013359_MyReservationMigration")]
+    partial class MyReservationMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -178,6 +178,29 @@ namespace BeanSceneDipAssT2.Migrations
                     b.HasKey("SittingID");
 
                     b.ToTable("Sittings");
+
+                    b.HasData(
+                        new
+                        {
+                            SittingID = 1,
+                            SittingName = "Breakfast",
+                            Sitting_EndTime = new DateTime(1, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Sitting_StartTime = new DateTime(1, 1, 1, 6, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            SittingID = 2,
+                            SittingName = "Lunch",
+                            Sitting_EndTime = new DateTime(1, 1, 1, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            Sitting_StartTime = new DateTime(1, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            SittingID = 3,
+                            SittingName = "Dinner",
+                            Sitting_EndTime = new DateTime(1, 1, 1, 23, 0, 0, 0, DateTimeKind.Unspecified),
+                            Sitting_StartTime = new DateTime(1, 1, 1, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("BeanSceneDipAssT2.Domain.Table", b =>
@@ -196,6 +219,188 @@ namespace BeanSceneDipAssT2.Migrations
                     b.HasKey("TableID");
 
                     b.ToTable("Tables");
+
+                    b.HasData(
+                        new
+                        {
+                            TableID = 1,
+                            Area = "Main",
+                            TableName = "M1"
+                        },
+                        new
+                        {
+                            TableID = 2,
+                            Area = "Main",
+                            TableName = "M2"
+                        },
+                        new
+                        {
+                            TableID = 3,
+                            Area = "Main",
+                            TableName = "M3"
+                        },
+                        new
+                        {
+                            TableID = 4,
+                            Area = "Main",
+                            TableName = "M4"
+                        },
+                        new
+                        {
+                            TableID = 5,
+                            Area = "Main",
+                            TableName = "M5"
+                        },
+                        new
+                        {
+                            TableID = 6,
+                            Area = "Main",
+                            TableName = "M6"
+                        },
+                        new
+                        {
+                            TableID = 7,
+                            Area = "Main",
+                            TableName = "M7"
+                        },
+                        new
+                        {
+                            TableID = 8,
+                            Area = "Main",
+                            TableName = "M8"
+                        },
+                        new
+                        {
+                            TableID = 9,
+                            Area = "Main",
+                            TableName = "M9"
+                        },
+                        new
+                        {
+                            TableID = 10,
+                            Area = "Main",
+                            TableName = "M10"
+                        },
+                        new
+                        {
+                            TableID = 11,
+                            Area = "Balcony",
+                            TableName = "B1"
+                        },
+                        new
+                        {
+                            TableID = 12,
+                            Area = "Balcony",
+                            TableName = "B2"
+                        },
+                        new
+                        {
+                            TableID = 13,
+                            Area = "Balcony",
+                            TableName = "B3"
+                        },
+                        new
+                        {
+                            TableID = 14,
+                            Area = "Balcony",
+                            TableName = "B4"
+                        },
+                        new
+                        {
+                            TableID = 15,
+                            Area = "Balcony",
+                            TableName = "B5"
+                        },
+                        new
+                        {
+                            TableID = 16,
+                            Area = "Balcony",
+                            TableName = "B6"
+                        },
+                        new
+                        {
+                            TableID = 17,
+                            Area = "Balcony",
+                            TableName = "B7"
+                        },
+                        new
+                        {
+                            TableID = 18,
+                            Area = "Balcony",
+                            TableName = "B8"
+                        },
+                        new
+                        {
+                            TableID = 19,
+                            Area = "Balcony",
+                            TableName = "B9"
+                        },
+                        new
+                        {
+                            TableID = 20,
+                            Area = "Balcony",
+                            TableName = "B10"
+                        },
+                        new
+                        {
+                            TableID = 21,
+                            Area = "Outside",
+                            TableName = "O1"
+                        },
+                        new
+                        {
+                            TableID = 22,
+                            Area = "Outside",
+                            TableName = "O2"
+                        },
+                        new
+                        {
+                            TableID = 23,
+                            Area = "Outside",
+                            TableName = "O3"
+                        },
+                        new
+                        {
+                            TableID = 24,
+                            Area = "Outside",
+                            TableName = "O4"
+                        },
+                        new
+                        {
+                            TableID = 25,
+                            Area = "Outside",
+                            TableName = "O5"
+                        },
+                        new
+                        {
+                            TableID = 26,
+                            Area = "Outside",
+                            TableName = "O6"
+                        },
+                        new
+                        {
+                            TableID = 27,
+                            Area = "Outside",
+                            TableName = "O7"
+                        },
+                        new
+                        {
+                            TableID = 28,
+                            Area = "Outside",
+                            TableName = "O8"
+                        },
+                        new
+                        {
+                            TableID = 29,
+                            Area = "Outside",
+                            TableName = "O9"
+                        },
+                        new
+                        {
+                            TableID = 30,
+                            Area = "Outside",
+                            TableName = "O10"
+                        });
                 });
 
             modelBuilder.Entity("BeanSceneDipAssT2.Domain.Table_Reservation", b =>

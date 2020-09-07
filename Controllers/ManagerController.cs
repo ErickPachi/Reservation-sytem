@@ -29,12 +29,59 @@ namespace BeanSceneDipAssT2.Controllers
         public IActionResult Index()
         {
             var Sittings = _services.GetListSitting();
-            EditSittingViewModel model = new EditSittingViewModel()
+            ReportViewModel model = new ReportViewModel()
             {
+                //for Sittings
                 AllSittings = Sittings,
                 SittingID = Sittings[0].SittingID
             };
-            return View(model);
+
+            try
+            {
+                List<Sitting> s = _services.GetListSitting();
+                List<Reservation> Rs = _services.GetAllReservation();
+                int cs = 0;
+                foreach (Reservation r in Rs)
+                {
+                    Table_Reservation td = _services.GetTable_ReservationById(r.ReservationID);
+                    if (td != null)
+                    {
+                        Table t = _services.GetTableByID(td.TableID);
+                        //area
+                        if (t.Area == "Main Room")
+                        {
+                            model.MainRoom++;
+                        }
+                        if (t.Area == "Balcony")
+                        {
+                            model.Balcony++;
+                        }
+                        if (t.Area == "Outside")
+                        {
+                            model.OutSide++;
+                        }
+                    }
+                    cs = cs + r.NumberOfGuests;
+                    //source
+                    if (r.Source == "WebSite")
+                    { model.Website++; }
+                    if (r.Source == "Mobile")
+                    { model.Mobile++; }
+                    if (r.Source == "Walk in")
+                    { model.InPErson++; }
+                    //sitting
+                    if (r.SittingID == s[0].SittingID)
+                    { model.Breakfast++; }
+                    if (r.SittingID == s[1].SittingID)
+                    { model.Lunch++; }
+                    if (r.SittingID == s[2].SittingID)
+                    { model.Dinner++; }
+                }
+                model.Reservations = Rs.Count();
+                model.Clients = cs;
+                return View(model);
+            }
+            catch { return RedirectToAction("Error", "Home"); }
         }
 
         public IActionResult MReservations()
@@ -119,57 +166,6 @@ namespace BeanSceneDipAssT2.Controllers
         {
             _services.UpdateSittingsDuration(s);
             return RedirectToAction("Index");
-        }
-        [HttpGet]
-        public IActionResult Report()
-        {
-            try
-            {
-                List<Sitting> s = _services.GetListSitting();
-                List<Reservation> Rs = _services.GetAllReservation();
-                ReportViewModel model = new ReportViewModel();
-                int cs = 0;
-                foreach (Reservation r in Rs)
-                {
-                    Table_Reservation td = _services.GetTable_ReservationById(r.ReservationID);
-                    if(td != null)
-                    {
-                        Table t = _services.GetTableByID(td.TableID);
-                        //area
-                        if (t.Area == "Main Room")
-                        {
-                            model.MainRoom++;
-                        }
-                        if (t.Area == "Balcony")
-                        {
-                            model.Balcony++;
-                        }
-                        if (t.Area == "Outside")
-                        {
-                            model.OutSide++;
-                        }
-                    }
-                    cs = cs + r.NumberOfGuests;
-                    //source
-                    if (r.Source == "WebSite")
-                    { model.Website++; }
-                    if (r.Source == "Mobile")
-                    { model.Mobile++; }
-                    if (r.Source == "Walk in")
-                    { model.InPErson++; }
-                    //sitting
-                    if (r.SittingID == s[0].SittingID)
-                    { model.Breakfast++; }
-                    if (r.SittingID == s[1].SittingID)
-                    { model.Lunch++; }
-                    if (r.SittingID == s[2].SittingID)
-                    { model.Dinner++; }
-                }
-                model.Reservations = Rs.Count();
-                model.Clients = cs;
-                return View(model);
-            }
-            catch { return RedirectToAction("Error", "Home"); }
         }
     }
 }

@@ -81,15 +81,15 @@ namespace BeanSceneDipAssT2.Controllers
 
         // get the Assign role page     ========    AdminController -> [HttpGet] -> RolesAssign
         [HttpGet]
-        public IActionResult RolesAssign(string Rolename)
+        public IActionResult RolesAssign(string UserEmail)
         {
 
-            if (Rolename != null)
+            if (UserEmail != null)
             {
                 //if the a role as chosen, set the data to a model.
                 AssignRoleViewModel ar = new AssignRoleViewModel()                                      
                 {
-                    RollName = Rolename,                                                
+                    UserEmail = UserEmail,                                                
                 };
                 //send the model with the data. So the RoleName input will be auto filled
                 return View(ar);                                                                        
@@ -109,7 +109,7 @@ namespace BeanSceneDipAssT2.Controllers
             try
             {
                 //get user by ID
-                var user = await _userManager.FindByIdAsync(AR.UserID);
+                var user = await _userManager.FindByEmailAsync(AR.UserEmail);
                 //Assign a role to this user
                 var result = await _userManager.AddToRoleAsync(user, AR.RollName);                       
                 if (result.Succeeded)
@@ -130,8 +130,13 @@ namespace BeanSceneDipAssT2.Controllers
         [HttpPost]
         public async Task<IActionResult> UnAssignRole(AssignRoleViewModel AR)
         {
+            //check if there is at least one manager
+            var mRole = await _userManager.FindByNameAsync(AR.RollName);
+            var ManagersList = _context.UserRoles.Select(m => m).Where(m => m.RoleId == mRole.Id).ToList();
+            if (ManagersList.Count <= 1) { return RedirectToAction("RolesIndex"); }
+
             //get user by ID
-            var user = await _userManager.FindByIdAsync(AR.UserID);
+            var user = await _userManager.FindByEmailAsync(AR.UserEmail);
             //Assign a role to this user
             var result = await _userManager.RemoveFromRoleAsync(user, AR.RollName);                     
             if (result.Succeeded)
@@ -145,19 +150,27 @@ namespace BeanSceneDipAssT2.Controllers
 
         // Delete a role    ========    AdminController -> [HttpPost] -> DeleteRole (Delete ROLE)
         [HttpPost]
-        public IActionResult DeleteRole(string id)
+        public async Task<IActionResult> DeleteRole(string id)
         {
-            try
+            var role = await _roleManager.FindByIdAsync(id); ;
+            if (role.Name == "Manager")
             {
-                //delete Role by ID
-                _services.DeleteRole(id);
-                //go to Roleindex page
-                return RedirectToAction("RolesIndex");                                                  
+                return RedirectToAction("RolesIndex");
             }
-            catch (Exception)
+            else
             {
-                //if not return bad request
-                return BadRequest();                                                                    
+                try
+                {
+                    //delete Role by ID
+                    _services.DeleteRole(id);
+                    //go to Roleindex page
+                    return RedirectToAction("RolesIndex");
+                }
+                catch (Exception)
+                {
+                    //if not return bad request
+                    return BadRequest();
+                }
             }
         }
 

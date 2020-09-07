@@ -6,9 +6,11 @@
         <a class="btn col-" style="margin: 5px;" href="javascript:void(0);" onclick="history.go(-1);">Go Back</a>
     </div>
 <h1>Manage Roles</h1>
+@*
 <p>
     <a class="btn" asp-action="RolesCreate" asp-controller="Admin">Create New</a>
 </p>
+*@
 <table class="table">
     <thead>
         <tr>
@@ -21,9 +23,11 @@
             <th>
 
             </th>
+            @*
             <th>
 
             </th>
+            *@
         </tr>
     </thead>
     <tbody>
@@ -37,11 +41,13 @@
                     @Html.DisplayFor(modelItem => item.RoleName)
                 </td>
                 <td>
-                    <a class="btn" asp-action="RolesAssign" asp-controller="Admin" asp-route-RollName="@item.RoleName">Assign Role</a>
+                    <a class="btn" asp-action="RolesAssign" asp-controller="Admin">Assign Role</a>
                 </td>
+                @*
                 <td>
                     <a class="btn btn-d" asp-action="DeleteRole" asp-controller="Admin" asp-route-id="@item.RoleId">Delete Role</a>
                 </td>
+                *@
             </tr>
         }
     </tbody>

@@ -11,12 +11,16 @@
         <span asp-validation-for="RollName" class="col- text-danger dn"></span>
         <div class="row">
             <label class="col-md-4" asp-for="RollName">Roll Name:</label>
-            <input asp-for="RollName" value="@Model.RollName" class="form-control col-md-8" />
-        </div><br />
-        <span asp-validation-for="UserID" class="col- text-danger dn"></span>
+            <select id="RollName" asp-for="RollName" name="RollName" class="form-control col-md-8">
+                <option>Manager</option>
+                <option>Staff</option>
+            </select>
+        </div>
+        <br />
+        <span asp-validation-for="UserEmail" class="col- text-danger dn"></span>
         <div class="row">
-            <label class="col-md-4" asp-for="UserID">User ID:</label>
-            <input asp-for="UserID" value="@Model.UserID" class="form-control col-md-8" />
+            <label class="col-md-4" asp-for="UserEmail">User Email:</label>
+            <input asp-for="UserEmail" value="@Model.UserEmail" class="form-control col-md-8" />
         </div><br />
         <hr />
         <div class="row formBottom">
